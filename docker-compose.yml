@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/backend
+    ports:
+      - 8000:8000
+      - 5678:5678
+    env_file:
+      - ./.dev
+    # command: python leadmanager/manage.py runserver 0.0.0.0:8000
+  frontend:
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./frontend
+    volumes:
+      - /frontend/node_modules
+      - ./frontend:/frontend
+    ports:
+      - 3000:3000
+  nginx:
+    restart: always
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./nginx
+    ports:
+      - '3050:3050'
+    depends_on:
+      - frontend

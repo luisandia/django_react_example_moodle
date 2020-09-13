@@ -1,0 +1,20 @@
+FROM python:3.7
+LABEL Luis Andia
+
+ENV PYTHONUNBUFFERED 1
+
+RUN pip install --upgrade pip
+COPY ./requirements.txt /requirements.txt
+
+
+RUN pip install -r /requirements.txt
+
+RUN apk del .tmp-build-deps
+
+WORKDIR /backend
+COPY . .
+
+CMD sh ./script.sh
+
+RUN useradd -ms /bin/bash user
+USER user

@@ -1,0 +1,9 @@
+{
+  "deepscan.ignoreConfirmWarning": true,
+  "python.pythonPath": "/home/zafiron/.virtualenvs/django3/bin/python",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4
+},
+}
